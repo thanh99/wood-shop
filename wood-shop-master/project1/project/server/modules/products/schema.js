@@ -1,13 +1,29 @@
 const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
-        required: [true, `Yêu cầu 'title'!`]
+        required: [true, `Yêu cầu 'name'!`]
+    },
+    price: {
+        type: Number,
+        required: [true, `Yêu cầu 'price'!`]
+    },
+    image: {
+        type: String,
+        required: [true, `Yêu cầu 'image'!`]
     },
     description: {
         type: String,
-        required: [true, `Yêu cầu 'description'!`]
+        require: [true, `yêu cầu 'description'`]
+    },
+    status: {
+        type: String,
+        require: [true, `yêu cầu 'status'`]
+    },
+    category: {
+        type: String,
+        require: [true, `yêu cầu 'category'`]
     }
 })
 

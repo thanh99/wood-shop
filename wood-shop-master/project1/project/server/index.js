@@ -6,7 +6,7 @@ const PORT = 3000
 const app = express();
 const router = require("./routes")
 
-app.use(express.static('../client'))
+app.use(express.static('../admin'))
 app.use(bodyParser.json())
 
 app.use(router)

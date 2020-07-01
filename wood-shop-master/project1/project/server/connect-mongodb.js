@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const mongooseString = 'mongodb+srv://common:common123@cluster0-dvsxq.mongodb.net/test'
+const mongooseString = 'mongodb+srv://nguyenanhtuan:anhtuanqwe@cluster0-vud3p.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 mongoose.connect(mongooseString, {
     // optionsn
@@ -13,5 +13,5 @@ mongoose.connect(mongooseString, {
 })
 .catch((err) => {
     console.error("connect failed to mongo atlas")
-    console.err(err.message)
+    console.error(err.message)
 })
