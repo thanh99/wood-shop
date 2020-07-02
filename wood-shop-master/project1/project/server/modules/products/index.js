@@ -46,6 +46,8 @@ const handlers = {
 
       if (count) {
         let count = await model.countDocuments(conditions)
+        console.log(count)
+        console.log(pageSize)
         let result = Math.ceil(count / pageSize);
         console.log(`result ${result}`)
         res.json({ result })
@@ -53,6 +55,7 @@ const handlers = {
         let skip = (pageIndex - 1) * pageSize
         console.log(`skip: ${skip}`)
         let limit = pageSize
+        
         let items = await model
           .find(conditions)
           .skip(skip)

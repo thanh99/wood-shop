@@ -14,8 +14,8 @@ controller.getListProduct = async (pageSize = 10, pageIndex = 1, inputSearch = '
 controller.getListProductBySize = async () => {
     let pageSize = document.getElementById("sizeNumber").value;
     await controller.getListProduct(pageSize)
+    await controller.getPagination(pageSize)
     view.showTable()
-    await controller.getPagination()
     view.showPagination()
 }
 
@@ -38,7 +38,7 @@ controller.getListProductByPage = async (currentPage = 1) => {
 }
 
 controller.getPagination = async (pageSize = 10) => {
-    let url = productApiUrl + `?count=true&pageSize="${pageSize}"`
+    let url = productApiUrl + `?count=true&pageSize=${pageSize}`
     let res = await fetch(url)
     let listProduct = await res.json()
     model.saveNumberOfPage(listProduct.result)
