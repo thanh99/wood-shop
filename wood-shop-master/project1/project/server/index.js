@@ -19,7 +19,6 @@ app.use((err, req, res, next) => {
       })
   })
 
-
 app.listen(PORT, (err) => {
     err 
         ? console.error(err.message)

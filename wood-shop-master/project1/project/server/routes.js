@@ -11,4 +11,10 @@ router.post("/products", productHandlers.create)
   
 router.get("/products", productHandlers.findMany)
 
+router.get("/products/:id", productHandlers.findOne)
+
+router.delete("/products/:id", productHandlers.delete)
+
+router.put("/products",productHandlers.update)
+
 module.exports = router

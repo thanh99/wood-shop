@@ -1,5 +1,6 @@
 const model = require('./model')
 const mongoose = require('mongoose')
+const { json } = require('body-parser')
 
 const handlers = {
   /**
@@ -17,8 +18,8 @@ const handlers = {
         pageIndex = 1,
         pageSize = 10,
         count,
-        sort = 'asc',
-        sortBy = 'title',
+        sort = 1,
+        sortBy = 'name',
         search = '',
         categoryId // ex: filter by categoryId
       } = req.query
@@ -27,9 +28,9 @@ const handlers = {
       if (pageSize == '') {
         pageSize = 10
       }
-      console.log(req.query)
       pageIndex = parseInt(pageIndex)
       pageSize = parseInt(pageSize)
+      sort = parseInt(sort)
       count = !!count
 
       let skip = (pageIndex - 1) * pageSize
@@ -76,8 +77,7 @@ const handlers = {
       let id = req.params.id
       let item = await model
         .findById(id)
-        .populate('categories', 'title')
-
+      console.log(item)
       res.json(item)
     } catch (err) {
       next(err)

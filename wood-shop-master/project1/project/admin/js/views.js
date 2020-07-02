@@ -5,7 +5,7 @@ view.showComponents = async function (name) {
     switch (name) {
         case 'main': {
             let app = document.getElementById('admin');
-            app.innerHTML = components.header + components.search + components.table + components.size + components.pagination + components.footer;
+            app.innerHTML = components.header + components.search + components.modalAdd + components.table + components.size + components.pagination + components.footer;
             model.saveCurrentPage(1)
             await controller.getPagination()
             view.showPagination()
@@ -33,6 +33,10 @@ view.showTable = async function () {
             <td>${record.name}</td>
             <td>${record.price}</td>
             <td>${record.image}</td>
+            <td>
+                <button class="button button-outline-warning" onclick="controller.showModalUpdate('${record._id}')">Sửa</button>
+                <button class="button button-outline-danger" onclick="controller.delProduct('${record._id}')">Xóa</button>
+            </td>
         </tr>`
     }
     tableArea.innerHTML = s
@@ -42,8 +46,8 @@ view.showPagination = () => {
     let listPage = document.getElementById("list-page")
     let number = parseInt(model.numberOfPage)
     let s = `
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+        <li class="page-item" onclick = "controller.movePagination(-1)">
+            <a class="page-link" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>`
@@ -56,8 +60,8 @@ view.showPagination = () => {
         }
     }
     s += `
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+        <li class="page-item" onclick = "controller.movePagination(1)">
+            <a class="page-link" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>`
