@@ -23,8 +23,6 @@ const handlers = {
         search = '',
         categoryId // ex: filter by categoryId
       } = req.query
-      console.log("___________")
-      console.log(req.query)
       if (pageSize == '') {
         pageSize = 10
       }
@@ -34,7 +32,6 @@ const handlers = {
       count = !!count
 
       let skip = (pageIndex - 1) * pageSize
-      console.log(`skip: ${skip}`)
       let limit = pageSize
       let conditions = {}
       if (search) {
@@ -46,15 +43,11 @@ const handlers = {
       // }
 
       if (count) {
-        let count = await model.countDocuments(conditions)
-        console.log(count)
-        console.log(pageSize)
+        let count = await model.countDocuments(conditions)    
         let result = Math.ceil(count / pageSize);
-        console.log(`result ${result}`)
         res.json({ result })
       } else {
         let skip = (pageIndex - 1) * pageSize
-        console.log(`skip: ${skip}`)
         let limit = pageSize
         
         let items = await model
@@ -77,7 +70,6 @@ const handlers = {
       let id = req.params.id
       let item = await model
         .findById(id)
-      console.log(item)
       res.json(item)
     } catch (err) {
       next(err)
@@ -87,7 +79,6 @@ const handlers = {
     try {
       let data = req.body
       let item = await model.create(data)
-
       res.json(item)
     } catch (err) {
       next(err)

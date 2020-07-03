@@ -3,13 +3,11 @@
 const controller = {}
 let productApiUrl = 'http://localhost:3000/products'
 
-controller.getListProduct = async (pageSize = 10, pageIndex = 1, inputSearch = '', sort = 1) => {
+controller.getListProduct = async (pageSize = 10, pageIndex = 1, inputSearch = '', sort = -1) => {
     if(pageSize) {
         pageSize = 10
     }
     url = productApiUrl + `?pageSize=${pageSize}&search=${inputSearch}&pageIndex=${pageIndex}&sort=${sort}`
-
-    console.log(url)
     let res = await fetch(url)
     let listProduct = await res.json()
     model.saveListProduct(listProduct)
@@ -32,7 +30,6 @@ controller.getListProductBySort = async (sort) => {
 }
 
 controller.getListProductByPage = async (currentPage = 1) => {
-    console.log(currentPage)
     model.saveCurrentPage(currentPage)
     let inputSearch = document.getElementById("formToFindInput").value;
     let pageSize = document.getElementById("sizeNumber").value;
@@ -44,8 +41,10 @@ controller.getListProductByPage = async (currentPage = 1) => {
 
 controller.search = async () => {
     let inputSearch = document.getElementById("formToFindInput").value;
+    console.log(inputSearch)
     let pageSize = document.getElementById("sizeNumber").value;
-    await controller.getListProduct(pageSize, inputSearch)
+    let pageIndex = model.currentPage
+    await controller.getListProduct(pageSize, inputSearch,pageIndex)
     view.showTable()
 }
 
@@ -69,8 +68,6 @@ controller.movePagination = async (condition) => {
             model.currentPage = currentPage + 1;
         }
     }
-    console.log(model.currentPage)
-
     await controller.getPagination(pageSize)
     await controller.getListProductByPage(model.currentPage)
     view.showPagination()
@@ -82,7 +79,6 @@ controller.getPagination = async (pageSize = 10) => {
     let res = await fetch(url)
     let listProduct = await res.json()
     model.saveNumberOfPage(listProduct.result)
-    console.log(model.numberOfPage)
 }
 
 controller.addProduct = async () => {
@@ -107,16 +103,8 @@ controller.addProduct = async () => {
 controller.showModalUpdate = async (id) => {
     $("#modalUpdateProduct").modal('show');
     url = productApiUrl + `/${id}`
-
-    console.log(url)
     let data = await fetch(url)
-    
-    // let data = await controller.getListProduct()
-    
     let chosenData = await data.json()
-    console.log(chosenData);
-    
-
 
     document.getElementById('idU').value = chosenData._id
     document.getElementById('nameU').value = chosenData.name
@@ -158,7 +146,6 @@ controller.delProduct = async (id) => {
 }
 // api
 async function createProduct(data) {
-    console.log(data)
     let res = await fetch(productApiUrl, {
         method: 'POST',
         headers: {
@@ -172,7 +159,7 @@ async function createProduct(data) {
 
 async function delProduct(id) {
     let url = productApiUrl + `/${id}`
-    console.log(url)
+
     let res = await fetch(url, {
         method: "DELETE",
         headers: {
