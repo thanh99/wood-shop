@@ -1,0 +1,135 @@
+img {
+    width: 100px;
+    height: auto;
+}
+.container-fluid{
+    width: 100%;
+}
+.header {
+    font-weight: bold ;
+    text-align: center;
+}
+.footer{
+    padding-top: 20px;
+    background-color: #323232;
+    color: #E3E3E4;
+}
+.contact_icon{
+    height: 50px;
+    width: 50px;
+}
+hr{
+    border: 1px solid pink;
+}
+  .card-header {
+      text-decoration: none;
+      background: #fafafa;
+      position: relative;
+  }
+  .card-header>a {
+   width: 100%;
+  }
+  .card-header>a:active {
+      color: brown;
+     }
+  .card-header>a:hover{
+      text-decoration: none;
+      color: brown;
+  }
+  @media only screen and (max-width: 768px){
+      .img{
+          float: left;
+          position: relative;
+      }
+      #contact{
+          position: absolute;
+          top: 5%;
+          right: 0%;
+      }
+      .nav-item{
+          position: relative;
+      }
+      .dropdown-menu{
+          position: absolute;
+          left: 50%;
+      }
+  }
+  @media only screen and (max-width: 320px){
+      .dropdown-menu{
+          width: 290px;
+      }
+  }
+  .card-header:hover {
+      text-decoration: none;
+      box-shadow: 0 0 10px #ccc;
+      position: relative;
+      background: blanchedalmond !important;
+  }
+  .card-header>a>i{
+      position: absolute;
+      right: 10%;
+      top: 45%;
+  }
+  .card-header>i:hover{
+      text-decoration: none;
+  }
+  .nav-item{
+      padding-left: 10px;
+      position: relative;
+  }
+  .dropdown-item{
+      border: 1px solid #fafafa;
+  }
+  .dropdown-item:hover{
+      box-shadow: 1px 1px 1px 1px #c3c3c3;
+      color: brown;
+      background-color: #dddddd;
+  }
+  .nav-item .dropdown-menu{
+      width: 320px;
+      position: absolute;
+      top: 55px;
+  }
+  .nav-item .dropdown-menu a:hover{
+   color: brown;
+  }
+  .nav-item:hover{
+      cursor: pointer;
+  }
+  .submit{
+      width: 77px;
+      background-color:blanchedalmond;
+      border: 1px solid #fff;
+  }
+
+  .content-img{
+      color: brown;
+  }
+  .header .navbar{
+    //   display: none;
+    position: fixed;
+    background-color: rgba(255,255,255,0.4) !important ;
+    width: 100%;
+    z-index: 999;
+    top: 0
+  }
+  #contact{
+      padding-top: 400px;
+  }
+#text {
+    width: 300px;
+    border: 1px solid white;
+   }
+   #text:hover {
+       cursor: pointer;
+      }
+
+//Catergory
+.productCatergory{
+    padding-top: 400px;
+    padding-bottom: 100px;
+}
+h2{
+    color: brown;
+    text-align: center;
+}
